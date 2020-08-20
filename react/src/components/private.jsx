@@ -5,37 +5,37 @@ import axios from "axios";
 
 
 
-function PrivateRoute({component: Component,log,...rest}){
-//     const [isLoggedIn,setIsLoggedIn]=useState(false);
-//     const verify =()=>{
-//         const componentMounted=true;
+function PrivateRoute({component: Component,...rest}){
+    const [isLoggedIn,setIsLoggedIn]=useState(false);
+    const verify = async ()=>{
+        const componentMounted=true;
 //         if(componentMounted){
 //         setIsLoggedIn(true);}
-//         // await axios.get("/api")
-//         // .then((res)=>{
-//         //     console.log(res);
-//         //     const isVerified=res.data.isVerified;
-//         //     console.log(isVerified)
-//         //     if(componentMounted){
-//         //     setIsLoggedIn(isVerified);}
-//         // }
-//         //     )
-//         //     .catch((err)=>console.log(err));
-//         //     console.log(isLoggedIn);
-//          }
-//  useEffect(
-//     ()=>{  
-//         verify();
-//     console.log(isLoggedIn)}
-//      ,[]
-// )
-console.log(log);
+        await axios.get("/api")
+        .then((res)=>{
+            console.log(res);
+            const isVerified=res.data.isVerified;
+            console.log(isVerified)
+            if(componentMounted){
+            setIsLoggedIn(isVerified);}
+        }
+            )
+            .catch((err)=>console.log(err));
+            console.log(isLoggedIn);
+         }
+ useEffect(
+    ()=>{  
+        verify();
+    console.log(isLoggedIn)}
+     ,[]
+)
+
 
 
 return (
 <Route {...rest} render={
     (props)=>
-   log?
+   isLoggedIn?
     <Component {...props}/>:
     <Redirect to="/login"/>
     }  
