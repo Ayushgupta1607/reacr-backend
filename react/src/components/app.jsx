@@ -10,34 +10,7 @@ import Profile from "./profile"
 
 function App(){
 
-    const [isLoggedIn,setIsLoggedIn]=useState(false);
-
-    const verify =async ()=>{ 
-        const componentMounted=true;
-        // if(componentMounted){
-        // setIsLoggedIn(true);}
-        await axios.get("/api")
-        .then((res)=>{
-            console.log(res);
-            const isVerified=res.data.isVerified;
-            console.log(isVerified)
-            if(componentMounted){
-            setIsLoggedIn(isVerified);
-            
-
-        }
-        }
-            )
-            .catch((err)=>console.log(err));
-            // console.log(isLoggedIn);
-         }
- useEffect(
-    ()=>{  
-        verify();
-    }
-     ,[]
-)
-console.log(isLoggedIn);
+    
         return (
     <BrowserRouter>
     {/* <Navbar /> */}
@@ -49,7 +22,7 @@ console.log(isLoggedIn);
     <Route path="/register">
         <Register />
     </Route>
-    <PrivateRoute path="/profile" log={isLoggedIn} component={Profile}/>
+    <PrivateRoute path="/profile" component={Profile}/>
       
       
        
