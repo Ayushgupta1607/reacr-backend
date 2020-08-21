@@ -22,8 +22,11 @@ function App(){
     <Route path="/register">
         <Register />
     </Route>
-    <PrivateRoute path="/profile" component={Profile}/>
-      
+    <PrivateRoute>
+    <Route path="/profile">
+        <Profile />
+    </Route>
+    </PrivateRoute>
       
        
     
